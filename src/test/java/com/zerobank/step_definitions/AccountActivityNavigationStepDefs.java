@@ -26,7 +26,7 @@ public class AccountActivityNavigationStepDefs  {
         LoginPage loginPage = new LoginPage();
         loginPage.signin_button.click();
         loginPage.login(username,password);
-        BrowserUtils.waitFor(3);
+
     }
 
     @When("the user clicks on {string} link on the {string} page")
