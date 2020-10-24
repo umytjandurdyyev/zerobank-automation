@@ -20,6 +20,7 @@ public class AddNewPayeeStepDefs {
 
         new DashboardPage().navigateToModule("Pay Bills");
         payBills.addNewPayee.click();
+        BrowserUtils.waitFor(3);
 
 
     }
@@ -29,9 +30,10 @@ public class AddNewPayeeStepDefs {
     @Given("creates new payee using following information")
     public void creates_new_payee_using_following_information(Map<String,String> newPayee) {
         try{
-            payBills.payeeName.sendKeys(newPayee.get("Payee Name "));
+
+            payBills.payeeName.sendKeys(newPayee.get("Payee Name"));
             BrowserUtils.waitFor(1);
-            payBills.addNewAddress.sendKeys(newPayee.get("Payee Address "));
+            payBills.addNewAddress.sendKeys(newPayee.get("Payee Address"));
             BrowserUtils.waitFor(1);
             payBills.account.sendKeys(newPayee.get("Account"));
             BrowserUtils.waitFor(1);
@@ -46,7 +48,7 @@ public class AddNewPayeeStepDefs {
     }
     @Then("message {string} should be displayed")
     public void message_should_be_displayed(String string) {
-        String actual = Driver.get().findElement(By.partialLinkText("The new payee The Law ")).getText();
+        String actual = Driver.get().findElement(By.xpath("//*[@id='alert_content']")).getText();
         Assert.assertEquals(string,actual);
 
 

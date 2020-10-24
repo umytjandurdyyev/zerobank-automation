@@ -11,10 +11,10 @@ public class PayBills  extends BasePage{
     @FindBy(xpath = "//*[@id='np_new_payee_name']")
     public WebElement payeeName;
 
-    @FindBy(xpath = "np_new_payee_account")
+    @FindBy(xpath = "//*[@id='np_new_payee_account']")
     public WebElement account;
 
-    @FindBy(xpath = "np_new_payee_details")
+    @FindBy(xpath = "//*[@id='np_new_payee_details']")
     public WebElement payeeDetails;
 
     @FindBy(xpath = "//*[@id='np_new_payee_address']")
@@ -28,4 +28,10 @@ public class PayBills  extends BasePage{
 
     @FindBy(xpath = "//*[@name='currency']")
     public WebElement currency;
+
+    @FindBy(xpath = "//*[@value='Purchase']")
+    public  WebElement purchase;
+
+    @FindBy(xpath = "//*[@id='pc_amount']")
+    public WebElement amount;
 }
