@@ -16,6 +16,7 @@ public class Hooks {
     WebDriver driver;
     @Before
     public void setUp(){
+
         String username = ConfigurationReader.get("username");
         String password = ConfigurationReader.get("password");
         String url = ConfigurationReader.get("url");
@@ -24,7 +25,7 @@ public class Hooks {
         LoginPage loginPage = new LoginPage();
         loginPage.signin_button.click();
         loginPage.login(username,password);
-        BrowserUtils.waitFor(3);
+
     }
 
     @After
@@ -34,7 +35,7 @@ public class Hooks {
             scenario.attach(screenshot,"image/png","screenshot");
         }
         BrowserUtils.waitFor(2);
-        Driver.closeDriver();
+        //Driver.closeDriver();
 
     }
 }

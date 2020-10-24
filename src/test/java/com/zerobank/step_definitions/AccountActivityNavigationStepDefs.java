@@ -18,6 +18,7 @@ public class AccountActivityNavigationStepDefs  {
 
     @Given("the user is logged in")
     public void the_user_is_logged_in() {
+
         String username = ConfigurationReader.get("username");
         String password = ConfigurationReader.get("password");
         String url = ConfigurationReader.get("url");
