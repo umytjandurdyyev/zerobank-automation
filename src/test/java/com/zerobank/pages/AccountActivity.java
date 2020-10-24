@@ -38,9 +38,9 @@ public class AccountActivity extends BasePage {
     @FindBy(xpath = "//*[@id='find_transactions_form']/div[2]/button")
     public WebElement find;
 
-    @FindBy(xpath = "//div[@id='filtered_transactions_for_account']/table/tbody/tr")
+    @FindBy(xpath = "//*[@id='filtered_transactions_for_account']/table/tbody/tr")
     public WebElement tableWithOutHead;
-    //  //*[@id='filtered_transactions_for_account']/table/tbody/tr
+
 
     public void sendKeysDates(String str1, String str2){
         BrowserUtils.waitFor(2);
