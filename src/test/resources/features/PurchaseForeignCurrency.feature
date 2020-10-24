@@ -2,7 +2,7 @@
 Feature: Purchase Foreign Currency
   Background:
     Given the user accesses the Purchase foreign currency cash tab
-
+@currencies
   Scenario: Available currencies
 
     Then following currencies should be available
@@ -18,12 +18,12 @@ Feature: Purchase Foreign Currency
       | Norway (krone)        |
       | New Zealand (dollar)  |
       | Singapore (dollar)    |
-
+@errorSelecting
   Scenario: Error message for not selecting currency
 
     When user tries to calculate cost without selecting a currency
     Then error message should be displayed
-
+@errorEntering
   Scenario: Error message for not entering value
 
     When user tries to calculate cost without entering a value
