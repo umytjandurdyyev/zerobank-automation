@@ -41,6 +41,12 @@ public class AccountActivity extends BasePage {
     @FindBy(xpath = "//*[@id='filtered_transactions_for_account']/table/tbody/tr")
     public WebElement tableWithOutHead;
 
+    @FindBy(xpath = "//*[@value='DEPOSIT']")
+    public WebElement deposit;
+
+    @FindBy(xpath = "//*[@value='WITHDRAWAL']")
+    public WebElement withdrawal;
+
 
     public void sendKeysDates(String str1, String str2){
         BrowserUtils.waitFor(2);

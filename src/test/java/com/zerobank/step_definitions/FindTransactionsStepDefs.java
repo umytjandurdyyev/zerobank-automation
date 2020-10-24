@@ -163,26 +163,70 @@ public class FindTransactionsStepDefs  {
         System.out.println(actualValue.toString());
     }
 
-    @Then("results table should show at least one result under Deposit")
-    public void results_table_should_show_at_least_one_result_under_Deposit() {
 
-    }
-    @Then("results table should show at least one result under Withdrawal")
-    public void results_table_should_show_at_least_one_result_under_Withdrawal() {
 
+    @Then("results table should show at least one result under {string}")
+    public void results_table_should_show_at_least_one_result_under(String string) {
+        List<String> actualValue = new ArrayList<>();
+        if(string.equalsIgnoreCase("Deposit")){
+            for (int i = 1; i <= getNumberOfRows(); i++) {
+                WebElement valueRow = Driver.get().findElement(By.xpath("//*[@id='filtered_transactions_for_account']/table/tbody/tr[" + i + "]/td[" + 3 + "]"));
+                System.out.println(valueRow.getText());
+                actualValue.add(valueRow.getText());
+
+            }
+            if(actualValue.size() >= 1){
+                Assert.assertEquals(actualValue.size(),actualValue.size());
+            }else{
+                Assert.assertEquals(actualValue.size(),0);
+            }
+            System.out.println(actualValue.toString());
+        }else if(string.equalsIgnoreCase("withdrawal")){
+            for (int i = 1; i <= getNumberOfRows(); i++) {
+                WebElement valueRow = Driver.get().findElement(By.xpath("//*[@id='filtered_transactions_for_account']/table/tbody/tr[" + i + "]/td[" + 4 + "]"));
+                System.out.println(valueRow.getText());
+                actualValue.add(valueRow.getText());
+
+            }
+            if(actualValue.size() >= 1){
+                Assert.assertEquals(actualValue.size(),actualValue.size());
+            }else{
+                Assert.assertEquals(actualValue.size(),0);
+            }
+            System.out.println(actualValue.toString());
+        }
+
+        for (int i = 1; i <= getNumberOfRows(); i++) {
+            WebElement valueRow = Driver.get().findElement(By.xpath("//*[@id='filtered_transactions_for_account']/table/tbody/tr[" + i + "]/td[" + 3 + "]"));
+            System.out.println(valueRow.getText());
+            actualValue.add(valueRow.getText());
+
+        }
+        if(actualValue.size() >= 1){
+            Assert.assertEquals(actualValue.size(),actualValue.size());
+        }else{
+            Assert.assertEquals(actualValue.size(),0);
+        }
+        System.out.println(actualValue.toString());
     }
+
     @When("user selects type {string}")
     public void user_selects_type(String string) {
 
-    }
-    @Then("results table should show no result under Withdrawal")
-    public void results_table_should_show_no_result_under_Withdrawal() {
+        Driver.get().findElement(By.xpath("//*[@value='"+string.toUpperCase()+"']")).click();
+
+        BrowserUtils.waitFor(1);
+        accountActivity.find.click();
+        getNumberOfRows();
+        BrowserUtils.waitFor(1);
 
     }
-    @Then("results table should show no result under Deposit")
-    public void results_table_should_show_no_result_under_Deposit() {
+
+    @Then("results table should show no result under {string}")
+    public void results_table_should_show_no_result_under(String string) {
 
     }
+
 
     private int getNUmberOfColumn() {
         List<WebElement> allRowsWithHeader = Driver.get().findElements(By.xpath("(//*[@id='filtered_transactions_for_account']/table/thead/tr/th)"));
