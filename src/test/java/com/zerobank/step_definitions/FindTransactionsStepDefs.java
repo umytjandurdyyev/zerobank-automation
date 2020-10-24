@@ -108,37 +108,59 @@ public class FindTransactionsStepDefs  {
     @Then("the results table should only not contain transactions dated {string}")
     public void the_results_table_should_only_not_contain_transactions_dated(String string) {
         List<String> actualValue = new ArrayList<>();
-
         for (int i = 1; i <= getNumberOfRows(); i++) {
             WebElement valueRow = Driver.get().findElement(By.xpath("//*[@id='filtered_transactions_for_account']/table/tbody/tr[" + i + "]/td[" + 1 + "]"));
             System.out.println(valueRow.getText());
             actualValue.add(valueRow.getText());
-
         }
         System.out.println(actualValue.toString());
         Assert.assertFalse(string.contains(actualValue.get(actualValue.size()-1)));
 
+        accountActivity.fromDate.clear();
+        BrowserUtils.waitFor(1);
+        accountActivity.toDate.clear();
+        BrowserUtils.waitFor(1);
+    }
 
+    @When("the user enters description {string}")
+    public void the_user_enters_description(String string) {
+
+        accountActivity.description.sendKeys(string);
         BrowserUtils.waitFor(1);
     }
 
 
-
-    @When("the user enters description “ONLINE”")
-    public void the_user_enters_description_ONLINE() {
-
-    }
     @Then("results table should only show descriptions containing {string}")
     public void results_table_should_only_show_descriptions_containing(String string) {
 
-    }
-    @When("the user enters description {string}")
-    public void the_user_enters_description(String string) {
+        List<String> actualValue = new ArrayList<>();
 
+        for (int i = 1; i <= getNumberOfRows(); i++) {
+            WebElement valueRow = Driver.get().findElement(By.xpath("//*[@id='filtered_transactions_for_account']/table/tbody/tr[" + i + "]/td[" + 2 + "]"));
+            System.out.println(valueRow.getText());
+            actualValue.add(valueRow.getText());
+            Assert.assertTrue(valueRow.getText().contains(string));
+
+        }
+        accountActivity.description.clear();
+        System.out.println(actualValue.toString());
+        BrowserUtils.waitFor(1);
     }
+
     @Then("results table should not show descriptions containing {string}")
     public void results_table_should_not_show_descriptions_containing(String string) {
 
+        List<String> actualValue = new ArrayList<>();
+
+        for (int i = 1; i <= getNumberOfRows(); i++) {
+            WebElement valueRow = Driver.get().findElement(By.xpath("//*[@id='filtered_transactions_for_account']/table/tbody/tr[" + i + "]/td[" + 2 + "]"));
+            System.out.println(valueRow.getText());
+            actualValue.add(valueRow.getText());
+            Assert.assertFalse(valueRow.getText().contains(string));
+
+        }
+        accountActivity.description.clear();
+        System.out.println(actualValue.toString());
     }
 
     @Then("results table should show at least one result under Deposit")
