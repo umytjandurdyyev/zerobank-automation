@@ -5,6 +5,7 @@ Feature: Find Transactions in Account Activity
     Given the user accesses the Find Transactions tab
 
 
+
   @range
   Scenario: Search date range
     When the firstly user enters date range from "2012-09-01" to "2012-09-06"
