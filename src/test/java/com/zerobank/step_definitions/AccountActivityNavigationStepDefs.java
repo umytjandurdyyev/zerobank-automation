@@ -37,9 +37,16 @@ public class AccountActivityNavigationStepDefs  {
 
     @Then("the Account Activity page should be displayed")
     public void the_page_should_be_displayed() {
-        String actualUrl = "http://zero.webappsecurity.com/bank/account-activity.html";
-        String expectedUrl = Driver.get().getCurrentUrl();
-        System.out.println(expectedUrl);
+        try {
+            String expectedUrl = "http://zero.webappsecurity.com/bank/account-activity.html";
+            String actualUrl = Driver.get().getCurrentUrl();
+            Assert.assertTrue(expectedUrl.contains(expectedUrl));
+            System.out.println(expectedUrl);
+        }catch (Exception e){
+            System.out.println("Somthing went wrong");
+        }
+
+
     }
 
     @And("Account drop down should have {string} selected")
