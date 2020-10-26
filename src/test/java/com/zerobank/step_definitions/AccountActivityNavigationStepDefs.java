@@ -1,11 +1,8 @@
 package com.zerobank.step_definitions;
 
-import com.zerobank.pages.LoginPage;
 import com.zerobank.utilities.BrowserUtils;
-import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -15,20 +12,6 @@ import org.openqa.selenium.support.ui.Select;
 
 public class AccountActivityNavigationStepDefs  {
 
-
-    @Given("the user is logged in")
-    public void the_user_is_logged_in() {
-
-        String username = ConfigurationReader.get("username");
-        String password = ConfigurationReader.get("password");
-        String url = ConfigurationReader.get("url");
-        Driver.get().manage().window().maximize();
-        Driver.get().get(url);
-        LoginPage loginPage = new LoginPage();
-        loginPage.signin_button.click();
-        loginPage.login(username,password);
-
-    }
 
     @When("the user clicks on {string} link on the {string} page")
     public void the_user_clicks_on_link_on_the_page(String string, String string2) {
@@ -43,7 +26,7 @@ public class AccountActivityNavigationStepDefs  {
             Assert.assertTrue(expectedUrl.contains(expectedUrl));
             System.out.println(expectedUrl);
         }catch (Exception e){
-            System.out.println("Somthing went wrong");
+            System.out.println("Something went wrong");
         }
 
 
